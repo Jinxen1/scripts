@@ -43,8 +43,8 @@ Enter-PSSession server.domain.tld -Credential $cred
 $root_vault = "C:\temp\vault"
 $root_dst = "C:\temp\dst"
 $files_left_only_logfile = "C:\temp\files_left_only.txt"
-# Get all files from both directories
-$files_vault = Get-ChildItem -file $root_vault -recurse
+# Get all files from both directories - force shows also hidden files
+$files_vault = Get-ChildItem -file $root_vault -recurse -force
 # Filter: Only ReparsePoints files from destination (which we want to copy from vault drive)
 $files_dst = Get-ChildItem -file $root_dst -recurse | Where-Object {$_.attributes -match 'ReparsePoint'}
 # Measure (count) objects in both locations
